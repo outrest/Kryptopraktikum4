@@ -1,8 +1,6 @@
 
 import java.nio.charset.StandardCharsets;
-import java.security.*;
 import java.util.Arrays;
-import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Aufgabe1 {
@@ -25,8 +23,8 @@ public class Aufgabe1 {
             System.out.println("Et Cipher hat Mist jebaut!");
         }*/
 
-       String encryptedString = AES.encrypt(input, key_string) ;
-        String decryptedString = AES.decrypt(encryptedString, key_string) ;
+        String encryptedString = AES.encrypt(input, key_string);
+        String decryptedString = AES.decrypt(encryptedString, key_string);
 
         System.out.println(input);
         System.out.println(Arrays.toString(encryptedString.getBytes()));
