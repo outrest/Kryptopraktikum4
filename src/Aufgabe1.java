@@ -12,6 +12,8 @@ public class Aufgabe1 {
         String key_string = "2b 7e 15 16 28 ae d2 a6 ab f7 15 88 09 cf 4f 3c";
         byte[] key_byte = key_string.getBytes(StandardCharsets.UTF_8);
 
+        String fips_197 =" 39 02 dc 19 25 dc 11 6a 84 09 85 0b 1d fb 97 32";
+
         SecretKeySpec key = new SecretKeySpec(key_byte, "AES");
 /*
         try {

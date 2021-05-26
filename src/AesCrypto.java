@@ -92,7 +92,7 @@ public class AesCrypto {
 
     public static void main(String[] args) {
 
-        String key = "0123456789abcdef"; // 128 bit key
+        String key = "2b 7e 15 16 28 ae d2 a6 ab f7 15 88 09 cf 4f 3c"; // 128 bit key
         String initVector = "abcdef9876543210"; // 16 bytes IV, it is recommended to use a different random IV for every message!
 
         String plain_text = "32 43 f6 a8 88 5a 30 8d 31 31 98 a2 e0 37 07 34";
