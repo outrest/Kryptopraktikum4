@@ -28,7 +28,7 @@ public class Aufgabe1 {
 
         System.out.println(input);
         System.out.println(Arrays.toString(encryptedString.getBytes()));
-        System.out.println(decryptedString);
+        System.out.println(Arrays.toString(decryptedString.getBytes()));
     }
 
 }

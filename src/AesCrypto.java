@@ -3,6 +3,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Base64;
 
 public class AesCrypto {
@@ -94,11 +95,11 @@ public class AesCrypto {
         String key = "0123456789abcdef"; // 128 bit key
         String initVector = "abcdef9876543210"; // 16 bytes IV, it is recommended to use a different random IV for every message!
 
-        String plain_text = "plain text";
+        String plain_text = "32 43 f6 a8 88 5a 30 8d 31 31 98 a2 e0 37 07 34";
         String encrypted = encrypt(key, initVector, plain_text);
-        System.out.println(encrypted);
+        System.out.println(Arrays.toString(encrypted.getBytes()));
 
         String decrypt = decrypt(key, encrypted);
-        System.out.println(decrypt);
+        System.out.println(Arrays.toString(decrypt.getBytes()));
     }
 }
