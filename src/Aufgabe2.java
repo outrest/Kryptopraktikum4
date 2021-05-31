@@ -52,7 +52,7 @@ public class Aufgabe2 {
 
     }
 
-    //%pdf
+    //%PDF => 25 50 44 46  <- Dat is Hex, ne?
     private static boolean checkMyBeginning(byte[] lol) {
         if (lol==null||lol.length==0)
             return false;
