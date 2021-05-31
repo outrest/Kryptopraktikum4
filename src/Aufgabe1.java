@@ -1,36 +1,34 @@
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Aufgabe1 {
 
     public static void main(String[] args) {
-        String input = "32 43 f6 a8 88 5a 30 8d 31 31 98 a2 e0 37 07 34";
-        byte[] input_byte = input.getBytes(StandardCharsets.UTF_8);
 
-        String key_string = "2b 7e 15 16 28 ae d2 a6 ab f7 15 88 09 cf 4f 3c";
-        byte[] key_byte = key_string.getBytes(StandardCharsets.UTF_8);
+        byte[] blarkInput = {0x32, 0x43, (byte) 0xf6, (byte) 0xa8, (byte) 0x88, 0x5a, 0x30, (byte) 0x8d, 0x31, 0x31, (byte) 0x98, (byte) 0xa2, (byte) 0xe0, 0x37, 0x07, 0x34};
 
-        String fips_197 =" 39 02 dc 19 25 dc 11 6a 84 09 85 0b 1d fb 97 32";
+        byte[] key_byte = {0x2b, 0x7e, 0x15, 0x16, 0x28, (byte) 0xae, (byte) 0xd2, (byte) 0xa6, (byte) 0xab, (byte) 0xf7, 0x15, (byte) 0x88, 0x09, (byte) 0xcf, 0x4f, 0x3c};
+
+        byte[] se_real_fips197 = {0x39, 0x25, (byte) 0x84, 0x1d, 0x02, (byte) 0xdc, 0x09, (byte) 0xfb, (byte) 0xdc, 0x11,(byte) 0x85, (byte) 0x97, 0x19, 0x6a, 0x0b, 0x32};
+
+        for (byte etwas : se_real_fips197){
+            System.out.print(String.format("%x",Byte.toUnsignedInt(etwas))+ " ");
+        }
+        System.out.println("\n----------------------------------");
 
         SecretKeySpec key = new SecretKeySpec(key_byte, "AES");
-/*
         try {
-            Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
+            Cipher aes = Cipher.getInstance("AES/ECB/NoPadding");
             aes.init(Cipher.ENCRYPT_MODE, key);
-
-
-        } catch (Exception E) {
-            System.out.println("Et Cipher hat Mist jebaut!");
-        }*/
-
-        String encryptedString = AES.encrypt(input, key_string);
-        String decryptedString = AES.decrypt(encryptedString, key_string);
-
-        System.out.println(input);
-        System.out.println(Arrays.toString(encryptedString.getBytes()));
-        System.out.println(Arrays.toString(decryptedString.getBytes()));
+            byte[] AES_byte = aes.doFinal(blarkInput);
+            for (byte etwas:AES_byte){
+                System.out.print(String.format("%x",Byte.toUnsignedInt(etwas))+ " ");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
-
-}
+} // (String.format("%x", blark)
