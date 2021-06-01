@@ -3,10 +3,8 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
-import java.nio.Buffer;
 import java.security.InvalidKeyException;
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class Aufgabe2 {
     public static void main(String[] args) throws IOException, InvalidKeyException {
@@ -71,7 +69,8 @@ public class Aufgabe2 {
     private static boolean checkMyBeginning(byte[] lol) {
         if (lol == null || lol.length == 0)
             return false;
-        return lol[lol.length - 1] == 0x0A;
+        return (lol[0] == 0x25) && (lol[1] == 0x50) && (lol[2] == 0x44) && (lol[3] == 0x46);
+        //((lol[lol.length - 1] == 0x0A )&&(lol[lol.length - 2] == 0x46));
         //((lol[0] == 0x25) && (lol[1] == 0x50) && (lol[2] == 0x44) && (lol[3] == 0x46));
     }
 
