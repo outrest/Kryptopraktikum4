@@ -17,7 +17,8 @@ public class Aufgabe2 {
 
         ByteArrayInputStream br = new ByteArrayInputStream(new FileInputStream("src\\chiffrat_AES.bin").readAllBytes());
         BufferedInputStream bsr = new BufferedInputStream(br);
-
+        byte[] chiffrat = bsr.readAllBytes();
+        bsr.close();
 
         try {
             Cipher aes = Cipher.getInstance("AES/CBC/PKCS5Padding");
@@ -27,22 +28,23 @@ public class Aufgabe2 {
             for (int i = 0; i < 256; i++) {
                 key_byte[0] = (byte) i;
                 for (int j = 0; j < 256; j++) {
+
                     key_byte[1] = (byte) j;
                     key = new SecretKeySpec(key_byte, "AES");
                     aes.init(Cipher.DECRYPT_MODE, key, invec);
                     try {
-                        AES_byte = aes.doFinal(bsr.readAllBytes());
-                    } catch (BadPaddingException e) {
-                        AES_byte = new byte[]{0, 0, 0, 0};
-                        continue;
-                    }
-                    if (checkMyBeginning(AES_byte)) {
-                        System.out.println("Key: ");
-                        for (byte etwas : AES_byte) {
-                            System.out.print(String.format("%x", Byte.toUnsignedInt(etwas)) + " ");
+                        AES_byte = aes.doFinal(chiffrat);
+                        if (checkMyBeginning(AES_byte)) {
+                            System.out.println("Key: " + Arrays.toString(key_byte));
+                            for (byte etwas : AES_byte) {
+                                System.out.print(String.format("%x", Byte.toUnsignedInt(etwas)) + " ");
+                            }
+                            break;
                         }
-                        break;
+                    } catch (BadPaddingException e) {
+                       aes = Cipher.getInstance("AES/CBC/PKCS5PADDING");
                     }
+
                 }
             }
 
