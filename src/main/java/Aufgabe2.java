@@ -23,7 +23,7 @@ public class Aufgabe2 {
         bsr.close();
         try {
             //Starte Cipher in bestimmter Instanz
-            Cipher aes = Cipher.getInstance("AES/CBC/ISO7816-4Padding");
+            Cipher aes = Cipher.getInstance("AES/CBC/ISO7816-4Padding"); //Oder: NoPadding Warum geht das?
             SecretKeySpec key;
             byte[] AES_byte;
             //Der Initalisierungsvektor
