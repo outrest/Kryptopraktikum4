@@ -17,6 +17,7 @@ public class Aufgabe2 {
         byte[] iv = {(byte) 0x80, (byte) 0x81, (byte) 0x82, (byte) 0x83, (byte) 0x84, (byte) 0x85, (byte) 0x86, (byte) 0x87, (byte) 0x88, (byte) 0x89, (byte) 0x8a, (byte) 0x8b, (byte) 0x8c, (byte) 0x8d, (byte) 0x8e, (byte) 0x8f};
 
         //Lese Datei ein
+        FileOutputStream writ = new FileOutputStream("output.pdf");
         ByteArrayInputStream br = new ByteArrayInputStream(new FileInputStream("src\\main\\java\\chiffrat_AES.bin").readAllBytes());
         BufferedInputStream bsr = new BufferedInputStream(br);
         byte[] chiffrat = bsr.readAllBytes();
@@ -53,7 +54,9 @@ public class Aufgabe2 {
                                 AES_converted.append((char) etwas);/*String.format("%x",Byte.toUnsignedInt(etwas)));*/
                             }
                             //Schreibe den Stuff
+
                             writeText(AES_converted.toString(), "crackedPDF" + pdfcounter++);
+                            writ.write(AES_byte);
                             break;
                         }
                     } catch (BadPaddingException e) {
@@ -65,6 +68,8 @@ public class Aufgabe2 {
             e.printStackTrace();
         }
     }
+
+
 
 
     //%PDF => 25 50 44 46  <- Dat is Hex, ne?
